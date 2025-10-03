@@ -23,7 +23,7 @@ const Index = () => {
           <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
             <Globe className="w-6 h-6 text-primary-foreground" />
           </div>
-          <span className="text-xl font-bold text-foreground">EcoQuest</span>
+          <span className="text-xl font-bold text-foreground">Qgen</span>
         </div>
         
         <div className="flex items-center gap-4">
@@ -66,7 +66,7 @@ const Index = () => {
               <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center shadow-lg">
                 <Globe className="w-12 h-12 text-primary-foreground" />
               </div>
-              <h1 className="text-5xl font-bold text-foreground">EcoQuest</h1>
+              <h1 className="text-5xl font-bold text-foreground">Qgen</h1>
             </div>
 
             <div className="flex items-center gap-4">
