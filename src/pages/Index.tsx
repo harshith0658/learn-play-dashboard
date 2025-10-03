@@ -52,11 +52,42 @@ const Index = () => {
       </header>
 
       {/* Main Content Area with Nature Background */}
-      <main className="flex-1 relative overflow-hidden bg-gradient-to-b from-[hsl(190,70,85)] to-[hsl(145,50,65)]">
-        {/* Cloud decorations */}
-        <div className="absolute top-8 left-20 w-32 h-16 bg-white/70 rounded-full blur-sm"></div>
-        <div className="absolute top-12 right-32 w-40 h-20 bg-white/60 rounded-full blur-sm"></div>
-        <div className="absolute top-20 left-1/2 w-36 h-18 bg-white/50 rounded-full blur-sm"></div>
+      <main className="flex-1 relative overflow-hidden bg-gradient-to-b from-[hsl(195,85,75)] via-[hsl(180,70,80)] to-[hsl(145,60,70)]">
+        {/* Decorative clouds */}
+        <div className="absolute top-4 left-16 w-24 h-12 bg-white/80 rounded-full shadow-sm"></div>
+        <div className="absolute top-6 left-24 w-16 h-8 bg-white/70 rounded-full shadow-sm"></div>
+        
+        <div className="absolute top-8 right-24 w-28 h-14 bg-white/75 rounded-full shadow-sm"></div>
+        <div className="absolute top-10 right-32 w-20 h-10 bg-white/65 rounded-full shadow-sm"></div>
+        
+        <div className="absolute top-16 left-1/3 w-32 h-16 bg-white/70 rounded-full shadow-sm"></div>
+        <div className="absolute top-18 left-1/3 ml-8 w-24 h-12 bg-white/60 rounded-full shadow-sm"></div>
+
+        <div className="absolute top-20 right-1/3 w-28 h-14 bg-white/65 rounded-full shadow-sm"></div>
+        <div className="absolute top-22 right-1/3 mr-6 w-20 h-10 bg-white/55 rounded-full shadow-sm"></div>
+
+        {/* Floating leaves */}
+        <div className="absolute top-32 left-12 w-4 h-4 bg-primary/30 rounded-full animate-pulse"></div>
+        <div className="absolute top-48 right-20 w-3 h-3 bg-primary/40 rounded-full animate-pulse delay-100"></div>
+        <div className="absolute top-72 left-1/4 w-4 h-4 bg-accent/30 rounded-full animate-pulse delay-200"></div>
+        <div className="absolute top-96 right-1/3 w-3 h-3 bg-accent/40 rounded-full animate-pulse delay-300"></div>
+
+        {/* Mountain silhouettes */}
+        <div className="absolute bottom-32 left-0 w-48 h-48 bg-primary/20 rounded-tl-full"></div>
+        <div className="absolute bottom-24 right-0 w-56 h-56 bg-primary/15 rounded-tr-full"></div>
+        
+        {/* Hills */}
+        <div className="absolute bottom-0 left-0 w-full h-64">
+          <div className="absolute bottom-0 left-0 w-1/3 h-40 bg-[hsl(140,55,50)] rounded-t-full"></div>
+          <div className="absolute bottom-0 left-1/4 w-1/3 h-48 bg-[hsl(145,60,45)] rounded-t-full"></div>
+          <div className="absolute bottom-0 right-1/4 w-1/3 h-44 bg-[hsl(142,58,47)] rounded-t-full"></div>
+          <div className="absolute bottom-0 right-0 w-1/3 h-36 bg-[hsl(138,52,52)] rounded-t-full"></div>
+        </div>
+
+        {/* Decorative circles */}
+        <div className="absolute top-1/4 left-8 w-8 h-8 rounded-full bg-accent/20 blur-sm"></div>
+        <div className="absolute top-1/3 right-12 w-6 h-6 rounded-full bg-secondary/20 blur-sm"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-10 h-10 rounded-full bg-primary/10 blur-sm"></div>
 
         {/* Main Content Container */}
         <div className="relative z-10 px-8 py-8">
@@ -128,8 +159,11 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Nature elements decoration */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[hsl(140,60,40)] to-transparent"></div>
+        {/* Bottom grass layer */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[hsl(140,60,35)] via-[hsl(142,58,40)] to-transparent">
+          {/* Grass texture effect */}
+          <div className="absolute bottom-0 left-0 right-0 h-16 bg-[hsl(138,65,30)] opacity-40"></div>
+        </div>
       </main>
 
       {/* Bottom Navigation */}
