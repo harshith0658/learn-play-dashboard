@@ -6,7 +6,7 @@ import {
   Globe, 
   Search, 
   HelpCircle, 
-  Lightbulb,
+  Gamepad2,
   Sprout,
   TreeDeciduous,
   Settings as SettingsIcon,
@@ -118,11 +118,11 @@ const Index = () => {
               </div>
             </button>
 
-            {/* Daily Eco Tip Button */}
+            {/* Mini Games Button */}
             <button className="w-full bg-card hover:bg-card/90 text-card-foreground rounded-[3rem] px-8 py-6 shadow-2xl transition-transform hover:scale-105">
               <h2 className="text-2xl font-bold flex items-center justify-center gap-3">
-                <Lightbulb className="w-6 h-6" />
-                Daily Eco Tip
+                <Gamepad2 className="w-6 h-6" />
+                Mini Games
               </h2>
             </button>
           </div>
