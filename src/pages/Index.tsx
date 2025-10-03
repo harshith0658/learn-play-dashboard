@@ -1,123 +1,169 @@
-import { Trophy, Coins, Star, BookOpen, FileQuestion, Gamepad2, Home, User, Heart, Settings } from "lucide-react";
-import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
+import { 
+  Coins, 
+  Award, 
+  Zap, 
+  BookOpen, 
+  Globe, 
+  Search, 
+  HelpCircle, 
+  Lightbulb,
+  Sprout,
+  TreeDeciduous,
+  Settings as SettingsIcon,
+  Store
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
-  const xpLevel = 5;
-  const xpProgress = 65;
-  const coinCount = 1250;
-  const badges = [
-    { id: 1, icon: Trophy, name: "First Win" },
-    { id: 2, icon: Star, name: "Quick Learner" },
-    { id: 3, icon: BookOpen, name: "Book Worm" },
-  ];
-
   return (
-    <div className="min-h-screen bg-background pb-20">
-      {/* Dashboard Section */}
-      <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground p-6 rounded-b-3xl shadow-lg">
-        <h1 className="text-3xl font-bold mb-6">My Dashboard</h1>
-        
-        {/* XP Level */}
-        <Card className="bg-card/95 backdrop-blur p-4 mb-4">
-          <div className="flex items-center justify-between mb-2">
-            <span className="font-semibold text-card-foreground">Level {xpLevel}</span>
-            <span className="text-sm text-muted-foreground">{xpProgress}% to next level</span>
+    <div className="min-h-screen flex flex-col">
+      {/* Top Header Bar */}
+      <header className="bg-card border-b border-border px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+            <Globe className="w-6 h-6 text-primary-foreground" />
           </div>
-          <Progress value={xpProgress} className="h-3" />
-        </Card>
+          <span className="text-xl font-bold text-foreground">EcoQuest</span>
+        </div>
+        
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <Coins className="w-5 h-5 text-accent" />
+            <span className="font-semibold">80 Coins</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Coins className="w-5 h-5 text-muted-foreground" />
+            <span className="font-semibold">80 Coins</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Award className="w-5 h-5 text-accent" />
+            <span className="font-semibold">8 Badges</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Zap className="w-5 h-5 text-accent" />
+            <span className="font-semibold">300 XP</span>
+          </div>
+        </div>
 
-        {/* Coins & Badges Row */}
-        <div className="grid grid-cols-2 gap-4">
-          <Card className="bg-card/95 backdrop-blur p-4">
-            <div className="flex items-center gap-3">
-              <div className="bg-accent/20 p-3 rounded-full">
-                <Coins className="w-6 h-6 text-accent" />
+        <div className="flex items-center gap-3">
+          <Button variant="default" className="bg-primary">Logout</Button>
+          <Button variant="outline">View Collection</Button>
+        </div>
+      </header>
+
+      {/* Main Content Area with Nature Background */}
+      <main className="flex-1 relative overflow-hidden bg-gradient-to-b from-[hsl(190,70,85)] to-[hsl(145,50,65)]">
+        {/* Cloud decorations */}
+        <div className="absolute top-8 left-20 w-32 h-16 bg-white/70 rounded-full blur-sm"></div>
+        <div className="absolute top-12 right-32 w-40 h-20 bg-white/60 rounded-full blur-sm"></div>
+        <div className="absolute top-20 left-1/2 w-36 h-18 bg-white/50 rounded-full blur-sm"></div>
+
+        {/* Main Content Container */}
+        <div className="relative z-10 px-8 py-8">
+          {/* Logo and Stats Row */}
+          <div className="flex items-center justify-between mb-12">
+            <div className="flex items-center gap-4">
+              <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center shadow-lg">
+                <Globe className="w-12 h-12 text-primary-foreground" />
               </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Coins</p>
-                <p className="text-2xl font-bold text-card-foreground">{coinCount}</p>
-              </div>
+              <h1 className="text-5xl font-bold text-foreground">EcoQuest</h1>
             </div>
-          </Card>
 
-          <Card className="bg-card/95 backdrop-blur p-4">
-            <div className="flex items-center gap-3">
-              <div className="bg-secondary/50 p-3 rounded-full">
-                <Trophy className="w-6 h-6 text-secondary-foreground" />
+            <div className="flex items-center gap-4">
+              <div className="bg-secondary text-secondary-foreground px-6 py-3 rounded-full flex items-center gap-2 shadow-md">
+                <BookOpen className="w-5 h-5" />
+                <span className="font-semibold">8 Badges</span>
               </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Badges</p>
-                <div className="flex gap-1 mt-1">
-                  {badges.map((badge) => (
-                    <Badge key={badge.id} variant="secondary" className="p-1">
-                      <badge.icon className="w-3 h-3" />
-                    </Badge>
-                  ))}
+              <div className="bg-secondary text-secondary-foreground px-6 py-3 rounded-full flex items-center gap-2 shadow-md">
+                <Zap className="w-5 h-5" />
+                <span className="font-semibold">300 XP</span>
+              </div>
+              <Button className="bg-card text-card-foreground hover:bg-card/90 shadow-md">
+                View Profile
+              </Button>
+            </div>
+          </div>
+
+          {/* Main Action Buttons */}
+          <div className="max-w-4xl mx-auto space-y-6">
+            {/* Lessons Button */}
+            <button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-[3rem] px-8 py-8 shadow-2xl transition-transform hover:scale-105 flex items-center justify-between relative overflow-hidden">
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-full bg-primary-foreground/20 flex items-center justify-center">
+                  <Globe className="w-8 h-8" />
+                </div>
+                <div className="text-left">
+                  <h2 className="text-3xl font-bold">LESSONS</h2>
+                  <p className="text-lg opacity-90">- Explore New Topics</p>
                 </div>
               </div>
-            </div>
-          </Card>
+              <div className="w-16 h-16 rounded-2xl bg-accent flex items-center justify-center">
+                <BookOpen className="w-8 h-8 text-accent-foreground" />
+              </div>
+            </button>
+
+            {/* Quizzes Button */}
+            <button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-[3rem] px-8 py-8 shadow-2xl transition-transform hover:scale-105 flex items-center justify-between relative overflow-hidden">
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-full bg-secondary-foreground/10 flex items-center justify-center">
+                  <Search className="w-8 h-8" />
+                </div>
+                <div className="text-left">
+                  <h2 className="text-3xl font-bold">Quizzes</h2>
+                  <p className="text-lg opacity-90">- Test Your Knowledge</p>
+                </div>
+              </div>
+              <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center">
+                <HelpCircle className="w-10 h-10 text-accent" />
+              </div>
+            </button>
+
+            {/* Daily Eco Tip Button */}
+            <button className="w-full bg-card hover:bg-card/90 text-card-foreground rounded-[3rem] px-8 py-6 shadow-2xl transition-transform hover:scale-105">
+              <h2 className="text-2xl font-bold flex items-center justify-center gap-3">
+                <Lightbulb className="w-6 h-6" />
+                Daily Eco Tip
+              </h2>
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Main Action Buttons */}
-      <div className="px-6 py-8 space-y-4">
-        <Button
-          className="w-full h-24 text-lg font-semibold flex items-center justify-start gap-4 bg-primary hover:bg-primary/90"
-          size="lg"
-        >
-          <div className="bg-primary-foreground/20 p-4 rounded-2xl">
-            <BookOpen className="w-8 h-8" />
-          </div>
-          <span>Lessons</span>
-        </Button>
-
-        <Button
-          className="w-full h-24 text-lg font-semibold flex items-center justify-start gap-4 bg-secondary hover:bg-secondary/80"
-          variant="secondary"
-          size="lg"
-        >
-          <div className="bg-secondary-foreground/10 p-4 rounded-2xl">
-            <FileQuestion className="w-8 h-8" />
-          </div>
-          <span>Quizzes</span>
-        </Button>
-
-        <Button
-          className="w-full h-24 text-lg font-semibold flex items-center justify-start gap-4 bg-accent hover:bg-accent/90"
-          size="lg"
-        >
-          <div className="bg-accent-foreground/20 p-4 rounded-2xl">
-            <Gamepad2 className="w-8 h-8" />
-          </div>
-          <span>Mini Games</span>
-        </Button>
-      </div>
+        {/* Nature elements decoration */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[hsl(140,60,40)] to-transparent"></div>
+      </main>
 
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border">
-        <div className="flex justify-around items-center h-16 px-4">
-          <Button variant="ghost" className="flex flex-col items-center gap-1 h-auto py-2">
-            <Home className="w-5 h-5 text-primary" />
-            <span className="text-xs font-medium text-primary">Home</span>
-          </Button>
-          <Button variant="ghost" className="flex flex-col items-center gap-1 h-auto py-2">
-            <User className="w-5 h-5" />
-            <span className="text-xs">Profile</span>
-          </Button>
-          <Button variant="ghost" className="flex flex-col items-center gap-1 h-auto py-2">
-            <Heart className="w-5 h-5" />
-            <span className="text-xs">Favorites</span>
-          </Button>
-          <Button variant="ghost" className="flex flex-col items-center gap-1 h-auto py-2">
-            <Settings className="w-5 h-5" />
-            <span className="text-xs">Settings</span>
-          </Button>
+      <nav className="bg-gradient-to-t from-[hsl(140,50,35)] to-[hsl(140,55,40)] px-8 py-6">
+        <div className="max-w-2xl mx-auto flex justify-around items-center">
+          <button className="flex flex-col items-center gap-2 group">
+            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Sprout className="w-8 h-8 text-primary" />
+            </div>
+            <span className="text-sm font-semibold text-card">Home</span>
+          </button>
+          
+          <button className="flex flex-col items-center gap-2 group">
+            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <TreeDeciduous className="w-8 h-8 text-primary" />
+            </div>
+            <span className="text-sm font-semibold text-card">Profile</span>
+          </button>
+          
+          <button className="flex flex-col items-center gap-2 group">
+            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <SettingsIcon className="w-8 h-8 text-primary" />
+            </div>
+            <span className="text-sm font-semibold text-card">Achievements</span>
+          </button>
+          
+          <button className="flex flex-col items-center gap-2 group">
+            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Store className="w-8 h-8 text-primary" />
+            </div>
+            <span className="text-sm font-semibold text-card">Store</span>
+          </button>
         </div>
-      </div>
+      </nav>
     </div>
   );
 };
