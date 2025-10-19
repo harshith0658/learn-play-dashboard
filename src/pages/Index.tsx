@@ -11,11 +11,70 @@ import {
   TreeDeciduous,
   Settings as SettingsIcon,
   Store,
-  LogOut
+  LogOut,
+  User
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import ProfileDialog from "@/components/ProfileDialog";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const [user, setUser] = useState<any>(null);
+  const [session, setSession] = useState<any>(null);
+  const [showProfile, setShowProfile] = useState(false);
+
+  useEffect(() => {
+    // Set up auth state listener
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setSession(session);
+        setUser(session?.user ?? null);
+        
+        if (!session && event === 'SIGNED_OUT') {
+          navigate("/auth");
+        }
+      }
+    );
+
+    // Check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      
+      if (!session) {
+        navigate("/auth");
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
+
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut();
+      toast({
+        title: "Logged out",
+        description: "You have been successfully logged out.",
+      });
+      navigate("/auth");
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    }
+  };
+
+  if (!user) {
+    return null; // Show nothing while checking auth
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Top Header Bar */}
@@ -47,10 +106,19 @@ const Index = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="default" className="bg-primary">Logout</Button>
+          <Button variant="outline" onClick={() => setShowProfile(true)}>
+            <User className="w-4 h-4 mr-2" />
+            View Profile
+          </Button>
           <Button variant="outline">View Collection</Button>
+          <Button variant="default" className="bg-primary" onClick={handleLogout}>
+            <LogOut className="w-4 h-4 mr-2" />
+            Logout
+          </Button>
         </div>
       </header>
+
+      <ProfileDialog open={showProfile} onOpenChange={setShowProfile} />
 
       {/* Main Content Area with Nature Background */}
       <main className="flex-1 relative overflow-hidden bg-gradient-to-b from-[hsl(195,85,75)] via-[hsl(180,70,80)] to-[hsl(145,60,70)]">
