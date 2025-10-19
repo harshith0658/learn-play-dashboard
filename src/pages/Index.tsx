@@ -179,13 +179,6 @@ const Index = () => {
           
           <button className="flex flex-col items-center gap-2 group">
             <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-              <TreeDeciduous className="w-8 h-8 text-primary" />
-            </div>
-            <span className="text-sm font-semibold text-card">Profile</span>
-          </button>
-          
-          <button className="flex flex-col items-center gap-2 group">
-            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform">
               <SettingsIcon className="w-8 h-8 text-primary" />
             </div>
             <span className="text-sm font-semibold text-card">Achievements</span>
