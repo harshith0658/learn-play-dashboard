@@ -10,7 +10,8 @@ import {
   Sprout,
   TreeDeciduous,
   Settings as SettingsIcon,
-  Store
+  Store,
+  LogOut
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -195,6 +196,13 @@ const Index = () => {
               <Store className="w-8 h-8 text-primary" />
             </div>
             <span className="text-sm font-semibold text-card">Store</span>
+          </button>
+          
+          <button className="flex flex-col items-center gap-2 group">
+            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <LogOut className="w-8 h-8 text-primary" />
+            </div>
+            <span className="text-sm font-semibold text-card">Logout</span>
           </button>
         </div>
       </nav>
