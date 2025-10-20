@@ -169,7 +169,10 @@ const Index = () => {
           {/* Main Action Buttons */}
           <div className="max-w-4xl mx-auto space-y-6">
             {/* Lessons Button */}
-            <button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-[3rem] px-8 py-8 shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-3xl flex items-center justify-between relative overflow-hidden animate-slide-up group">
+            <button 
+              onClick={() => navigate("/lessons")}
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-[3rem] px-8 py-8 shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-3xl flex items-center justify-between relative overflow-hidden animate-slide-up group"
+            >
               <div className="flex items-center gap-6">
                 <div className="w-16 h-16 rounded-full bg-primary-foreground/20 flex items-center justify-center group-hover:animate-bounce-subtle">
                   <Globe className="w-8 h-8" />
