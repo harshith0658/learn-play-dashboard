@@ -3,6 +3,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Play, BookOpen, CheckCircle, Lock, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import introGeography from "@/assets/lesson-intro-geography.jpg";
+import continentsOceans from "@/assets/lesson-continents-oceans.jpg";
+import countriesCapitals from "@/assets/lesson-countries-capitals.jpg";
+import climateZones from "@/assets/lesson-climate-zones.jpg";
+import landmarks from "@/assets/lesson-landmarks.jpg";
+import naturalWonders from "@/assets/lesson-natural-wonders.jpg";
 
 const Lessons = () => {
   const navigate = useNavigate();
@@ -15,7 +21,8 @@ const Lessons = () => {
       duration: "15 min",
       status: "completed",
       icon: BookOpen,
-      locked: false
+      locked: false,
+      preview: introGeography
     },
     {
       id: 2,
@@ -24,7 +31,8 @@ const Lessons = () => {
       duration: "20 min",
       status: "completed",
       icon: BookOpen,
-      locked: false
+      locked: false,
+      preview: continentsOceans
     },
     {
       id: 3,
@@ -33,7 +41,8 @@ const Lessons = () => {
       duration: "25 min",
       status: "unlocked",
       icon: BookOpen,
-      locked: false
+      locked: false,
+      preview: countriesCapitals
     },
     {
       id: 4,
@@ -42,7 +51,8 @@ const Lessons = () => {
       duration: "18 min",
       status: "unlocked",
       icon: BookOpen,
-      locked: false
+      locked: false,
+      preview: climateZones
     },
     {
       id: 5,
@@ -51,7 +61,8 @@ const Lessons = () => {
       duration: "22 min",
       status: "locked",
       icon: BookOpen,
-      locked: true
+      locked: true,
+      preview: landmarks
     },
     {
       id: 6,
@@ -60,7 +71,8 @@ const Lessons = () => {
       duration: "20 min",
       status: "locked",
       icon: BookOpen,
-      locked: true
+      locked: true,
+      preview: naturalWonders
     }
   ];
 
@@ -103,9 +115,27 @@ const Lessons = () => {
             return (
               <Card 
                 key={lesson.id} 
-                className="group hover:shadow-lg transition-all duration-300 hover:scale-105 animate-slide-up border-2"
+                className="group hover:shadow-lg transition-all duration-300 hover:scale-105 animate-slide-up border-2 overflow-hidden"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
+                {/* Preview Image */}
+                <div className="relative h-48 overflow-hidden bg-muted">
+                  <img 
+                    src={lesson.preview} 
+                    alt={lesson.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  {isLocked && (
+                    <div className="absolute inset-0 bg-background/60 backdrop-blur-sm flex items-center justify-center">
+                      <Lock className="w-12 h-12 text-muted-foreground" />
+                    </div>
+                  )}
+                  <div className="absolute bottom-2 right-2 bg-background/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    <span className="text-xs font-semibold">{lesson.duration}</span>
+                  </div>
+                </div>
+
                 <CardHeader>
                   <div className="flex items-start justify-between mb-2">
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:rotate-12 transition-transform">
@@ -138,11 +168,6 @@ const Lessons = () => {
                 </CardHeader>
 
                 <CardContent>
-                  <div className="flex items-center gap-2 mb-4 text-sm text-muted-foreground">
-                    <Clock className="w-4 h-4" />
-                    <span>{lesson.duration}</span>
-                  </div>
-
                   <div className="flex gap-2">
                     {isCompleted ? (
                       <>
