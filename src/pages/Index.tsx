@@ -92,10 +92,6 @@ const Index = () => {
             <span className="font-semibold">80 Coins</span>
           </div>
           <div className="flex items-center gap-2">
-            <Coins className="w-5 h-5 text-muted-foreground" />
-            <span className="font-semibold">80 Coins</span>
-          </div>
-          <div className="flex items-center gap-2">
             <Award className="w-5 h-5 text-accent" />
             <span className="font-semibold">8 Badges</span>
           </div>
