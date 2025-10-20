@@ -160,27 +160,13 @@ const Index = () => {
 
         {/* Main Content Container */}
         <div className="relative z-10 px-8 py-8">
-          {/* Logo and Stats Row */}
-          <div className="flex items-center justify-between mb-12">
+          {/* Logo Row */}
+          <div className="flex items-center justify-center mb-12">
             <div className="flex items-center gap-4">
               <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center shadow-lg">
                 <Globe className="w-12 h-12 text-primary-foreground" />
               </div>
               <h1 className="text-5xl font-bold text-foreground">Qgen</h1>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="bg-secondary text-secondary-foreground px-6 py-3 rounded-full flex items-center gap-2 shadow-md">
-                <BookOpen className="w-5 h-5" />
-                <span className="font-semibold">8 Badges</span>
-              </div>
-              <div className="bg-secondary text-secondary-foreground px-6 py-3 rounded-full flex items-center gap-2 shadow-md">
-                <Zap className="w-5 h-5" />
-                <span className="font-semibold">300 XP</span>
-              </div>
-              <Button className="bg-card text-card-foreground hover:bg-card/90 shadow-md">
-                View Profile
-              </Button>
             </div>
           </div>
 
