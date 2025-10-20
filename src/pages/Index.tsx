@@ -157,54 +157,54 @@ const Index = () => {
         {/* Main Content Container */}
         <div className="relative z-10 px-8 py-8">
           {/* Logo Row */}
-          <div className="flex items-center justify-center mb-12">
+          <div className="flex items-center justify-center mb-12 animate-slide-up">
             <div className="flex items-center gap-4">
-              <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center shadow-lg">
+              <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center shadow-lg animate-bounce-subtle">
                 <Globe className="w-12 h-12 text-primary-foreground" />
               </div>
-              <h1 className="text-5xl font-bold text-foreground">Qgen</h1>
+              <h1 className="text-5xl font-bold text-foreground animate-float">Qgen</h1>
             </div>
           </div>
 
           {/* Main Action Buttons */}
           <div className="max-w-4xl mx-auto space-y-6">
             {/* Lessons Button */}
-            <button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-[3rem] px-8 py-8 shadow-2xl transition-transform hover:scale-105 flex items-center justify-between relative overflow-hidden">
+            <button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-[3rem] px-8 py-8 shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-3xl flex items-center justify-between relative overflow-hidden animate-slide-up group">
               <div className="flex items-center gap-6">
-                <div className="w-16 h-16 rounded-full bg-primary-foreground/20 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-primary-foreground/20 flex items-center justify-center group-hover:animate-bounce-subtle">
                   <Globe className="w-8 h-8" />
                 </div>
                 <div className="text-left">
-                  <h2 className="text-3xl font-bold">LESSONS</h2>
-                  <p className="text-lg opacity-90">- Explore New Topics</p>
+                  <h2 className="text-3xl font-bold tracking-wide transition-transform duration-300 group-hover:scale-105">LESSONS</h2>
+                  <p className="text-lg opacity-90 transition-all duration-300 group-hover:translate-x-2">- Explore New Topics</p>
                 </div>
               </div>
-              <div className="w-16 h-16 rounded-2xl bg-accent flex items-center justify-center">
+              <div className="w-16 h-16 rounded-2xl bg-accent flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
                 <BookOpen className="w-8 h-8 text-accent-foreground" />
               </div>
             </button>
 
             {/* Quizzes Button */}
-            <button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-[3rem] px-8 py-8 shadow-2xl transition-transform hover:scale-105 flex items-center justify-between relative overflow-hidden">
+            <button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-[3rem] px-8 py-8 shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-3xl flex items-center justify-between relative overflow-hidden animate-slide-up [animation-delay:100ms] group">
               <div className="flex items-center gap-6">
-                <div className="w-16 h-16 rounded-full bg-secondary-foreground/10 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-secondary-foreground/10 flex items-center justify-center group-hover:animate-bounce-subtle">
                   <Search className="w-8 h-8" />
                 </div>
                 <div className="text-left">
-                  <h2 className="text-3xl font-bold">Quizzes</h2>
-                  <p className="text-lg opacity-90">- Test Your Knowledge</p>
+                  <h2 className="text-3xl font-bold tracking-wide transition-transform duration-300 group-hover:scale-105">Quizzes</h2>
+                  <p className="text-lg opacity-90 transition-all duration-300 group-hover:translate-x-2">- Test Your Knowledge</p>
                 </div>
               </div>
-              <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
                 <HelpCircle className="w-10 h-10 text-accent" />
               </div>
             </button>
 
             {/* Mini Games Button */}
-            <button className="w-full bg-card hover:bg-card/90 text-card-foreground rounded-[3rem] px-8 py-6 shadow-2xl transition-transform hover:scale-105">
-              <h2 className="text-2xl font-bold flex items-center justify-center gap-3">
-                <Gamepad2 className="w-6 h-6" />
-                Mini Games
+            <button className="w-full bg-card hover:bg-card/90 text-card-foreground rounded-[3rem] px-8 py-6 shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-3xl animate-slide-up [animation-delay:200ms] group">
+              <h2 className="text-2xl font-bold flex items-center justify-center gap-3 tracking-wide">
+                <Gamepad2 className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
+                <span className="group-hover:scale-105 transition-transform duration-300">Mini Games</span>
               </h2>
             </button>
           </div>
@@ -221,31 +221,31 @@ const Index = () => {
       <nav className="bg-gradient-to-t from-[hsl(140,50,35)] to-[hsl(140,55,40)] px-8 py-6">
         <div className="max-w-2xl mx-auto flex justify-around items-center">
           <button className="flex flex-col items-center gap-2 group">
-            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Sprout className="w-8 h-8 text-primary" />
+            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
+              <Sprout className="w-8 h-8 text-primary group-hover:rotate-12 transition-transform duration-300" />
             </div>
-            <span className="text-sm font-semibold text-card">Home</span>
+            <span className="text-sm font-semibold text-card group-hover:scale-105 transition-transform duration-300">Home</span>
           </button>
           
           <button className="flex flex-col items-center gap-2 group">
-            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-              <SettingsIcon className="w-8 h-8 text-primary" />
+            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
+              <SettingsIcon className="w-8 h-8 text-primary group-hover:rotate-90 transition-transform duration-300" />
             </div>
-            <span className="text-sm font-semibold text-card">Achievements</span>
+            <span className="text-sm font-semibold text-card group-hover:scale-105 transition-transform duration-300">Achievements</span>
           </button>
           
           <button className="flex flex-col items-center gap-2 group">
-            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Store className="w-8 h-8 text-primary" />
+            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
+              <Store className="w-8 h-8 text-primary group-hover:rotate-12 transition-transform duration-300" />
             </div>
-            <span className="text-sm font-semibold text-card">Store</span>
+            <span className="text-sm font-semibold text-card group-hover:scale-105 transition-transform duration-300">Store</span>
           </button>
           
           <button className="flex flex-col items-center gap-2 group">
-            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-              <LogOut className="w-8 h-8 text-primary" />
+            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
+              <LogOut className="w-8 h-8 text-primary group-hover:rotate-12 transition-transform duration-300" />
             </div>
-            <span className="text-sm font-semibold text-card">Logout</span>
+            <span className="text-sm font-semibold text-card group-hover:scale-105 transition-transform duration-300">Logout</span>
           </button>
         </div>
       </nav>
