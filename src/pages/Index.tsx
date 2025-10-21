@@ -188,7 +188,10 @@ const Index = () => {
             </button>
 
             {/* Quizzes Button */}
-            <button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-[3rem] px-8 py-8 shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-3xl flex items-center justify-between relative overflow-hidden animate-slide-up [animation-delay:100ms] group">
+            <button 
+              onClick={() => navigate("/lessons")}
+              className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-[3rem] px-8 py-8 shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-3xl flex items-center justify-between relative overflow-hidden animate-slide-up [animation-delay:100ms] group"
+            >
               <div className="flex items-center gap-6">
                 <div className="w-16 h-16 rounded-full bg-secondary-foreground/10 flex items-center justify-center group-hover:animate-bounce-subtle">
                   <Search className="w-8 h-8" />
