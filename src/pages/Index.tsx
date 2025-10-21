@@ -207,11 +207,22 @@ const Index = () => {
             </button>
 
             {/* Mini Games Button */}
-            <button className="w-full bg-card hover:bg-card/90 text-card-foreground rounded-[3rem] px-8 py-6 shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-3xl animate-slide-up [animation-delay:200ms] group">
-              <h2 className="text-2xl font-bold flex items-center justify-center gap-3 tracking-wide">
-                <Gamepad2 className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-                <span className="group-hover:scale-105 transition-transform duration-300">Mini Games</span>
-              </h2>
+            <button 
+              onClick={() => navigate("/mini-games")}
+              className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-[3rem] px-8 py-8 shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-3xl flex items-center justify-between relative overflow-hidden animate-slide-up [animation-delay:200ms] group"
+            >
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center group-hover:animate-bounce-subtle">
+                  <Gamepad2 className="w-8 h-8" />
+                </div>
+                <div className="text-left">
+                  <h2 className="text-3xl font-bold tracking-wide transition-transform duration-300 group-hover:scale-105">Mini Games</h2>
+                  <p className="text-lg opacity-90 transition-all duration-300 group-hover:translate-x-2">- Play & Learn</p>
+                </div>
+              </div>
+              <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+                <Gamepad2 className="w-8 h-8" />
+              </div>
             </button>
           </div>
         </div>
