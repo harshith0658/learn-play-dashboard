@@ -21,6 +21,56 @@ import { supabase } from "@/integrations/supabase/client";
 import ProfileDialog from "@/components/ProfileDialog";
 import { useToast } from "@/hooks/use-toast";
 
+const CoinsDisplay = ({ userId }: { userId?: string }) => {
+  const [coins, setCoins] = useState<number>(0);
+
+  useEffect(() => {
+    if (!userId) return;
+
+    const fetchCoins = async () => {
+      const { data } = await supabase
+        .from('profiles')
+        .select('coins')
+        .eq('id', userId)
+        .single();
+      
+      if (data) setCoins(data.coins);
+    };
+
+    fetchCoins();
+
+    // Subscribe to changes
+    const channel = supabase
+      .channel('coins-updates')
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'profiles',
+          filter: `id=eq.${userId}`
+        },
+        (payload: any) => {
+          if (payload.new?.coins !== undefined) {
+            setCoins(payload.new.coins);
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [userId]);
+
+  return (
+    <div className="flex items-center gap-2">
+      <Coins className="w-5 h-5 text-accent" />
+      <span className="font-semibold">{coins} Coins</span>
+    </div>
+  );
+};
+
 const Index = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -87,10 +137,7 @@ const Index = () => {
         </div>
         
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <Coins className="w-5 h-5 text-accent" />
-            <span className="font-semibold">80 Coins</span>
-          </div>
+          <CoinsDisplay userId={user?.id} />
           <div className="flex items-center gap-2">
             <Award className="w-5 h-5 text-accent" />
             <span className="font-semibold">8 Badges</span>
