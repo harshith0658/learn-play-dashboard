@@ -17,6 +17,7 @@ export type Database = {
       profiles: {
         Row: {
           age: number | null
+          coins: number
           created_at: string | null
           email: string
           id: string
@@ -25,6 +26,7 @@ export type Database = {
         }
         Insert: {
           age?: number | null
+          coins?: number
           created_at?: string | null
           email: string
           id: string
@@ -33,6 +35,7 @@ export type Database = {
         }
         Update: {
           age?: number | null
+          coins?: number
           created_at?: string | null
           email?: string
           id?: string
@@ -41,12 +44,36 @@ export type Database = {
         }
         Relationships: []
       }
+      user_game_unlocks: {
+        Row: {
+          game_id: string
+          id: string
+          unlocked_at: string
+          user_id: string
+        }
+        Insert: {
+          game_id: string
+          id?: string
+          unlocked_at?: string
+          user_id: string
+        }
+        Update: {
+          game_id?: string
+          id?: string
+          unlocked_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      unlock_game: {
+        Args: { p_coin_cost: number; p_game_id: string }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never
