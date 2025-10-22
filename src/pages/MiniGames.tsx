@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Trash2, Droplets, TreePine, Gamepad2, Lock, Coins } from "lucide-react";
+import { ArrowLeft, Trash2, Droplets, TreePine, Gamepad2, Lock, Coins, Star, Award } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
@@ -10,6 +10,8 @@ const MiniGames = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [userCoins, setUserCoins] = useState<number>(0);
+  const [userXP, setUserXP] = useState<number>(0);
+  const [userBadges, setUserBadges] = useState<number>(0);
   const [unlockedGames, setUnlockedGames] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
   const [unlockingGame, setUnlockingGame] = useState<string | null>(null);
@@ -29,10 +31,10 @@ const MiniGames = () => {
         return;
       }
 
-      // Fetch user coins
+      // Fetch user stats
       const { data: profile, error: profileError } = await supabase
         .from('profiles')
-        .select('coins')
+        .select('coins, xp, badges')
         .eq('id', user.id)
         .single();
 
@@ -40,6 +42,8 @@ const MiniGames = () => {
         console.error('Error fetching profile:', profileError);
       } else if (profile) {
         setUserCoins(profile.coins);
+        setUserXP(profile.xp);
+        setUserBadges(profile.badges);
       }
 
       // Fetch unlocked games
@@ -155,10 +159,20 @@ const MiniGames = () => {
             </div>
           </div>
           
-          {/* Coins Display */}
-          <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-600/20 to-amber-600/20 px-6 py-3 rounded-full border border-yellow-600/50">
-            <Coins className="w-6 h-6 text-yellow-400" />
-            <span className="text-xl font-bold text-yellow-400">{userCoins}</span>
+          {/* Stats Display */}
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-600/20 to-amber-600/20 px-4 py-2 rounded-full border border-yellow-600/50">
+              <Coins className="w-5 h-5 text-yellow-400" />
+              <span className="text-lg font-bold text-yellow-400">{userCoins}</span>
+            </div>
+            <div className="flex items-center gap-2 bg-gradient-to-r from-purple-600/20 to-blue-600/20 px-4 py-2 rounded-full border border-purple-600/50">
+              <Star className="w-5 h-5 text-purple-400" />
+              <span className="text-lg font-bold text-purple-400">{userXP}</span>
+            </div>
+            <div className="flex items-center gap-2 bg-gradient-to-r from-green-600/20 to-emerald-600/20 px-4 py-2 rounded-full border border-green-600/50">
+              <Award className="w-5 h-5 text-green-400" />
+              <span className="text-lg font-bold text-green-400">{userBadges}</span>
+            </div>
           </div>
         </div>
       </header>

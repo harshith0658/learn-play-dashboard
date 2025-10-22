@@ -17,30 +17,36 @@ export type Database = {
       profiles: {
         Row: {
           age: number | null
+          badges: number
           coins: number
           created_at: string | null
           email: string
           id: string
           name: string
           updated_at: string | null
+          xp: number
         }
         Insert: {
           age?: number | null
+          badges?: number
           coins?: number
           created_at?: string | null
           email: string
           id: string
           name: string
           updated_at?: string | null
+          xp?: number
         }
         Update: {
           age?: number | null
+          badges?: number
           coins?: number
           created_at?: string | null
           email?: string
           id?: string
           name?: string
           updated_at?: string | null
+          xp?: number
         }
         Relationships: []
       }

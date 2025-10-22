@@ -12,7 +12,8 @@ import {
   Settings as SettingsIcon,
   Store,
   LogOut,
-  User
+  User,
+  Star
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
@@ -21,27 +22,33 @@ import { supabase } from "@/integrations/supabase/client";
 import ProfileDialog from "@/components/ProfileDialog";
 import { useToast } from "@/hooks/use-toast";
 
-const CoinsDisplay = ({ userId }: { userId?: string }) => {
+const StatsDisplay = ({ userId }: { userId?: string }) => {
   const [coins, setCoins] = useState<number>(0);
+  const [xp, setXP] = useState<number>(0);
+  const [badges, setBadges] = useState<number>(0);
 
   useEffect(() => {
     if (!userId) return;
 
-    const fetchCoins = async () => {
+    const fetchStats = async () => {
       const { data } = await supabase
         .from('profiles')
-        .select('coins')
+        .select('coins, xp, badges')
         .eq('id', userId)
         .single();
       
-      if (data) setCoins(data.coins);
+      if (data) {
+        setCoins(data.coins);
+        setXP(data.xp);
+        setBadges(data.badges);
+      }
     };
 
-    fetchCoins();
+    fetchStats();
 
     // Subscribe to changes
     const channel = supabase
-      .channel('coins-updates')
+      .channel('stats-updates')
       .on(
         'postgres_changes',
         {
@@ -51,9 +58,9 @@ const CoinsDisplay = ({ userId }: { userId?: string }) => {
           filter: `id=eq.${userId}`
         },
         (payload: any) => {
-          if (payload.new?.coins !== undefined) {
-            setCoins(payload.new.coins);
-          }
+          if (payload.new?.coins !== undefined) setCoins(payload.new.coins);
+          if (payload.new?.xp !== undefined) setXP(payload.new.xp);
+          if (payload.new?.badges !== undefined) setBadges(payload.new.badges);
         }
       )
       .subscribe();
@@ -64,10 +71,20 @@ const CoinsDisplay = ({ userId }: { userId?: string }) => {
   }, [userId]);
 
   return (
-    <div className="flex items-center gap-2">
-      <Coins className="w-5 h-5 text-accent" />
-      <span className="font-semibold">{coins} Coins</span>
-    </div>
+    <>
+      <div className="flex items-center gap-2">
+        <Coins className="w-5 h-5 text-accent" />
+        <span className="font-semibold">{coins} Coins</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <Award className="w-5 h-5 text-accent" />
+        <span className="font-semibold">{badges} Badges</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <Star className="w-5 h-5 text-accent" />
+        <span className="font-semibold">{xp} XP</span>
+      </div>
+    </>
   );
 };
 
@@ -137,15 +154,7 @@ const Index = () => {
         </div>
         
         <div className="flex items-center gap-4">
-          <CoinsDisplay userId={user?.id} />
-          <div className="flex items-center gap-2">
-            <Award className="w-5 h-5 text-accent" />
-            <span className="font-semibold">8 Badges</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Zap className="w-5 h-5 text-accent" />
-            <span className="font-semibold">300 XP</span>
-          </div>
+          <StatsDisplay userId={user?.id} />
         </div>
 
         <div className="flex items-center gap-3">

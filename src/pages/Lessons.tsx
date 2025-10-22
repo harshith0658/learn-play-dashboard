@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Play, BookOpen, CheckCircle, Lock, Clock, Coins } from "lucide-react";
+import { ArrowLeft, Play, BookOpen, CheckCircle, Lock, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
@@ -67,13 +67,13 @@ const Lessons = () => {
         return;
       }
 
-      const result = data as { success: boolean; message: string; total_coins?: number };
+      const result = data as { success: boolean; message: string; total_coins?: number; total_xp?: number; total_badges?: number };
 
       if (result.success) {
         setCompletedVideos(prev => new Set([...prev, videoId]));
         toast({
           title: "🎉 Congratulations!",
-          description: `${result.message} (Total: ${result.total_coins} coins)`
+          description: `${result.message}`
         });
       } else {
         toast({
@@ -282,8 +282,9 @@ const Lessons = () => {
                           <>
                             <Play className="w-4 h-4 mr-2" />
                             Complete Video
-                            <Coins className="w-4 h-4 ml-2" />
-                            <span className="ml-1">+100</span>
+                            <span className="ml-2 flex items-center gap-1 text-xs opacity-90">
+                              (+100 🪙 +100 ⭐ +1 🏆)
+                            </span>
                           </>
                         )}
                       </Button>

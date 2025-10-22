@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, CheckCircle, XCircle, Coins } from "lucide-react";
+import { ArrowLeft, CheckCircle, XCircle, Coins, Star, Award } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useState } from "react";
@@ -70,12 +70,12 @@ const Quiz = () => {
         return;
       }
 
-      const result = data as { success: boolean; message: string; total_coins?: number };
+      const result = data as { success: boolean; message: string; total_coins?: number; total_xp?: number; total_badges?: number };
 
       if (result.success) {
         toast({
           title: "🎉 Quiz Completed!",
-          description: `${result.message} (Total: ${result.total_coins} coins)`
+          description: `${result.message}`
         });
         setTimeout(() => navigate("/lessons"), 2000);
       } else {
@@ -184,9 +184,19 @@ const Quiz = () => {
                 </p>
               </div>
 
-              <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-yellow-600/20 to-amber-600/20 px-6 py-4 rounded-xl border border-yellow-600/50">
-                <Coins className="w-6 h-6 text-yellow-400" />
-                <span className="text-xl font-bold text-yellow-400">+100 Coins</span>
+              <div className="space-y-3">
+                <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-yellow-600/20 to-amber-600/20 px-6 py-4 rounded-xl border border-yellow-600/50">
+                  <Coins className="w-6 h-6 text-yellow-400" />
+                  <span className="text-xl font-bold text-yellow-400">+100 Coins</span>
+                </div>
+                <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600/20 to-blue-600/20 px-6 py-4 rounded-xl border border-purple-600/50">
+                  <Star className="w-6 h-6 text-purple-400" />
+                  <span className="text-xl font-bold text-purple-400">+100 XP</span>
+                </div>
+                <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-green-600/20 to-emerald-600/20 px-6 py-4 rounded-xl border border-green-600/50">
+                  <Award className="w-6 h-6 text-green-400" />
+                  <span className="text-xl font-bold text-green-400">+1 Badge</span>
+                </div>
               </div>
 
               <div className="flex gap-4">
