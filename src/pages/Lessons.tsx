@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Play, BookOpen, CheckCircle, Lock, Clock } from "lucide-react";
+import { ArrowLeft, Play, BookOpen, CheckCircle, Lock, Clock, Coins } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { useEffect, useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 import introGeography from "@/assets/lesson-intro-geography.jpg";
 import continentsOceans from "@/assets/lesson-continents-oceans.jpg";
 import countriesCapitals from "@/assets/lesson-countries-capitals.jpg";
@@ -12,66 +15,137 @@ import naturalWonders from "@/assets/lesson-natural-wonders.jpg";
 
 const Lessons = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [completedVideos, setCompletedVideos] = useState<Set<string>>(new Set());
+  const [loading, setLoading] = useState(true);
+  const [completing, setCompleting] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchCompletedVideos();
+  }, []);
+
+  const fetchCompletedVideos = async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (!user) {
+        navigate("/auth");
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from('video_completions')
+        .select('video_id')
+        .eq('user_id', user.id);
+
+      if (error) {
+        console.error('Error fetching completions:', error);
+      } else if (data) {
+        setCompletedVideos(new Set(data.map(v => v.video_id)));
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCompleteVideo = async (videoId: string) => {
+    setCompleting(videoId);
+    
+    try {
+      const { data, error } = await supabase.rpc('complete_video', {
+        p_video_id: videoId
+      });
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: error.message,
+          variant: "destructive"
+        });
+        return;
+      }
+
+      const result = data as { success: boolean; message: string; total_coins?: number };
+
+      if (result.success) {
+        setCompletedVideos(prev => new Set([...prev, videoId]));
+        toast({
+          title: "🎉 Congratulations!",
+          description: `${result.message} (Total: ${result.total_coins} coins)`
+        });
+      } else {
+        toast({
+          title: "Info",
+          description: result.message
+        });
+      }
+    } catch (error) {
+      console.error('Error completing video:', error);
+      toast({
+        title: "Error",
+        description: "Failed to complete video. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setCompleting(null);
+    }
+  };
 
   const lessons = [
     {
-      id: 1,
+      id: "intro-geography",
       title: "Introduction to Geography",
       description: "Learn the basics of world geography and map reading",
       duration: "15 min",
-      status: "completed",
       icon: BookOpen,
       locked: false,
       preview: introGeography
     },
     {
-      id: 2,
+      id: "continents-oceans",
       title: "Continents and Oceans",
       description: "Explore the seven continents and five oceans",
       duration: "20 min",
-      status: "completed",
       icon: BookOpen,
       locked: false,
       preview: continentsOceans
     },
     {
-      id: 3,
+      id: "countries-capitals",
       title: "Countries and Capitals",
       description: "Discover countries around the world and their capitals",
       duration: "25 min",
-      status: "unlocked",
       icon: BookOpen,
       locked: false,
       preview: countriesCapitals
     },
     {
-      id: 4,
+      id: "climate-zones",
       title: "Climate Zones",
       description: "Understanding different climate regions",
       duration: "18 min",
-      status: "unlocked",
       icon: BookOpen,
       locked: false,
       preview: climateZones
     },
     {
-      id: 5,
+      id: "landmarks",
       title: "World Landmarks",
       description: "Famous landmarks and monuments worldwide",
       duration: "22 min",
-      status: "locked",
       icon: BookOpen,
-      locked: true,
+      locked: false,
       preview: landmarks
     },
     {
-      id: 6,
+      id: "natural-wonders",
       title: "Natural Wonders",
       description: "Explore Earth's most amazing natural formations",
       duration: "20 min",
-      status: "locked",
       icon: BookOpen,
-      locked: true,
+      locked: false,
       preview: naturalWonders
     }
   ];
@@ -107,10 +181,14 @@ const Lessons = () => {
 
         {/* Lessons Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {lessons.map((lesson, index) => {
-            const Icon = lesson.icon;
-            const isCompleted = lesson.status === "completed";
-            const isLocked = lesson.locked;
+          {loading ? (
+            <div className="col-span-full text-center">Loading...</div>
+          ) : (
+            lessons.map((lesson, index) => {
+              const Icon = lesson.icon;
+              const isCompleted = completedVideos.has(lesson.id);
+              const isLocked = lesson.locked;
+              const isCompleting = completing === lesson.id;
 
             return (
               <Card 
@@ -182,24 +260,30 @@ const Lessons = () => {
                         <Button 
                           className="flex-1 bg-primary hover:bg-primary/90"
                           disabled={isLocked}
+                          onClick={() => navigate(`/quiz/${lesson.id}`)}
                         >
                           Take Quiz
                         </Button>
                       </>
                     ) : (
                       <Button 
-                        className="w-full bg-primary hover:bg-primary/90"
-                        disabled={isLocked}
+                        onClick={() => handleCompleteVideo(lesson.id)}
+                        disabled={isLocked || isCompleting}
+                        className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
                       >
                         {isLocked ? (
                           <>
                             <Lock className="w-4 h-4 mr-2" />
                             Locked
                           </>
+                        ) : isCompleting ? (
+                          "Completing..."
                         ) : (
                           <>
                             <Play className="w-4 h-4 mr-2" />
-                            Play Lesson
+                            Complete Video
+                            <Coins className="w-4 h-4 ml-2" />
+                            <span className="ml-1">+100</span>
                           </>
                         )}
                       </Button>
@@ -208,7 +292,8 @@ const Lessons = () => {
                 </CardContent>
               </Card>
             );
-          })}
+          })
+          )}
         </div>
       </main>
     </div>

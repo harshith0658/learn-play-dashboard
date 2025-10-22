@@ -44,6 +44,30 @@ export type Database = {
         }
         Relationships: []
       }
+      quiz_completions: {
+        Row: {
+          coins_awarded: number
+          completed_at: string
+          id: string
+          quiz_id: string
+          user_id: string
+        }
+        Insert: {
+          coins_awarded?: number
+          completed_at?: string
+          id?: string
+          quiz_id: string
+          user_id: string
+        }
+        Update: {
+          coins_awarded?: number
+          completed_at?: string
+          id?: string
+          quiz_id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_game_unlocks: {
         Row: {
           game_id: string
@@ -65,11 +89,43 @@ export type Database = {
         }
         Relationships: []
       }
+      video_completions: {
+        Row: {
+          coins_awarded: number
+          completed_at: string
+          id: string
+          user_id: string
+          video_id: string
+        }
+        Insert: {
+          coins_awarded?: number
+          completed_at?: string
+          id?: string
+          user_id: string
+          video_id: string
+        }
+        Update: {
+          coins_awarded?: number
+          completed_at?: string
+          id?: string
+          user_id?: string
+          video_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      complete_quiz: {
+        Args: { p_quiz_id: string }
+        Returns: Json
+      }
+      complete_video: {
+        Args: { p_video_id: string }
+        Returns: Json
+      }
       unlock_game: {
         Args: { p_coin_cost: number; p_game_id: string }
         Returns: Json
