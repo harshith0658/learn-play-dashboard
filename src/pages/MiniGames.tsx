@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Trash2, Droplets, TreePine, Gamepad2, Lock, Coins, Star, Award } from "lucide-react";
+import { ArrowLeft, Trash2, Droplets, TreePine, Gamepad2, Lock, Coins, Star, Award, Brain } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
@@ -117,7 +117,8 @@ const MiniGames = () => {
       description: "Sort trash into bins by dragging",
       icon: Trash2,
       bgColor: "from-emerald-600/20 to-teal-600/20",
-      glowColor: "group-hover:shadow-[0_0_30px_rgba(16,185,129,0.6)]"
+      glowColor: "group-hover:shadow-[0_0_30px_rgba(16,185,129,0.6)]",
+      path: null
     },
     {
       id: "clean-the-river",
@@ -125,7 +126,8 @@ const MiniGames = () => {
       description: "Match eco-friendly pairs",
       icon: Droplets,
       bgColor: "from-blue-600/20 to-cyan-600/20",
-      glowColor: "group-hover:shadow-[0_0_30px_rgba(59,130,246,0.6)]"
+      glowColor: "group-hover:shadow-[0_0_30px_rgba(59,130,246,0.6)]",
+      path: null
     },
     {
       id: "park-cleanup",
@@ -133,7 +135,17 @@ const MiniGames = () => {
       description: "Clean up the park",
       icon: TreePine,
       bgColor: "from-green-600/20 to-lime-600/20",
-      glowColor: "group-hover:shadow-[0_0_30px_rgba(34,197,94,0.6)]"
+      glowColor: "group-hover:shadow-[0_0_30px_rgba(34,197,94,0.6)]",
+      path: null
+    },
+    {
+      id: "memory-recap",
+      title: "Memory Recap",
+      description: "Match geography terms with symbols",
+      icon: Brain,
+      bgColor: "from-yellow-600/20 to-orange-600/20",
+      glowColor: "group-hover:shadow-[0_0_30px_rgba(251,191,36,0.6)]",
+      path: "/memory-recap"
     }
   ];
 
@@ -224,7 +236,7 @@ const MiniGames = () => {
                   </CardHeader>
 
                   <CardContent className="text-center pb-6">
-                    {isLocked ? (
+                  {isLocked ? (
                       <Button 
                         onClick={() => handleUnlockGame(game.id)}
                         disabled={isUnlocking || userCoins < UNLOCK_COST}
@@ -246,9 +258,11 @@ const MiniGames = () => {
                       </Button>
                     ) : (
                       <Button 
-                        className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-6 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group-hover:scale-110"
+                        onClick={() => game.path && navigate(game.path)}
+                        disabled={!game.path}
+                        className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-6 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group-hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        Play
+                        {game.path ? "Play" : "Coming Soon"}
                       </Button>
                     )}
                   </CardContent>

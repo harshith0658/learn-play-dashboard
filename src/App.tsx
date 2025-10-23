@@ -8,6 +8,7 @@ import Auth from "./pages/Auth";
 import Lessons from "./pages/Lessons";
 import Quiz from "./pages/Quiz";
 import MiniGames from "./pages/MiniGames";
+import MemoryRecap from "./pages/MemoryRecap";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/lessons" element={<Lessons />} />
           <Route path="/quiz/:lessonId" element={<Quiz />} />
           <Route path="/mini-games" element={<MiniGames />} />
+          <Route path="/memory-recap" element={<MemoryRecap />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
