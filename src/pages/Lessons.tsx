@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Play, BookOpen, CheckCircle, Lock, Clock } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { ArrowLeft, Play, BookOpen, CheckCircle, Lock, Clock, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
@@ -19,6 +20,7 @@ const Lessons = () => {
   const [completedVideos, setCompletedVideos] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
   const [completing, setCompleting] = useState<string | null>(null);
+  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
 
   useEffect(() => {
     fetchCompletedVideos();
@@ -101,7 +103,8 @@ const Lessons = () => {
       duration: "15 min",
       icon: BookOpen,
       locked: false,
-      preview: introGeography
+      preview: introGeography,
+      videoUrl: "/videos/intruduction.mp4"
     },
     {
       id: "continents-oceans",
@@ -252,7 +255,8 @@ const Lessons = () => {
                         <Button 
                           variant="outline" 
                           className="flex-1"
-                          disabled={isLocked}
+                          disabled={isLocked || !lesson.videoUrl}
+                          onClick={() => lesson.videoUrl && setPlayingVideo(lesson.videoUrl)}
                         >
                           <Play className="w-4 h-4 mr-2" />
                           Replay
@@ -267,7 +271,7 @@ const Lessons = () => {
                       </>
                     ) : (
                       <Button 
-                        onClick={() => handleCompleteVideo(lesson.id)}
+                        onClick={() => lesson.videoUrl ? setPlayingVideo(lesson.videoUrl) : handleCompleteVideo(lesson.id)}
                         disabled={isLocked || isCompleting}
                         className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
                       >
@@ -281,7 +285,7 @@ const Lessons = () => {
                         ) : (
                           <>
                             <Play className="w-4 h-4 mr-2" />
-                            Complete Video
+                            {lesson.videoUrl ? "Watch Video" : "Complete Video"}
                             <span className="ml-2 flex items-center gap-1 text-xs opacity-90">
                               (+100 🪙 +100 ⭐ +1 🏆)
                             </span>
@@ -297,6 +301,49 @@ const Lessons = () => {
           )}
         </div>
       </main>
+
+      {/* Video Player Dialog */}
+      <Dialog open={!!playingVideo} onOpenChange={(open) => !open && setPlayingVideo(null)}>
+        <DialogContent className="max-w-4xl w-full p-0 overflow-hidden">
+          <DialogHeader className="p-6 pb-4">
+            <div className="flex items-center justify-between">
+              <DialogTitle>Introduction to Geography</DialogTitle>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setPlayingVideo(null)}
+                className="rounded-full"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+          </DialogHeader>
+          <div className="relative w-full aspect-video bg-black">
+            {playingVideo && (
+              <video
+                src={playingVideo}
+                controls
+                autoPlay
+                className="w-full h-full"
+                onEnded={() => {
+                  const videoLesson = lessons.find(l => l.videoUrl === playingVideo);
+                  if (videoLesson && !completedVideos.has(videoLesson.id)) {
+                    handleCompleteVideo(videoLesson.id);
+                  }
+                  setPlayingVideo(null);
+                }}
+              >
+                Your browser does not support the video tag.
+              </video>
+            )}
+          </div>
+          <div className="p-6 pt-4 bg-muted/50">
+            <p className="text-sm text-muted-foreground">
+              Watch the complete video to earn +100 🪙, +100 ⭐, and +1 🏆
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
