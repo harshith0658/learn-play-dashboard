@@ -117,15 +117,6 @@ const Lessons = () => {
       videoUrl: "/videos/continents-oceans.mp4"
     },
     {
-      id: "countries-capitals",
-      title: "Countries in the world",
-      description: "Discover countries around the world and their capitals",
-      duration: "25 min",
-      icon: BookOpen,
-      locked: false,
-      preview: countriesCapitals
-    },
-    {
       id: "climate-zones",
       title: "Climate Zones",
       description: "Understanding different climate regions",
