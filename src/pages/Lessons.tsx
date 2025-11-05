@@ -113,7 +113,8 @@ const Lessons = () => {
       duration: "20 min",
       icon: BookOpen,
       locked: false,
-      preview: continentsOceans
+      preview: continentsOceans,
+      videoUrl: "/videos/continents-oceans.mp4"
     },
     {
       id: "countries-capitals",
