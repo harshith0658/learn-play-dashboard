@@ -118,7 +118,7 @@ const Lessons = () => {
     },
     {
       id: "countries-capitals",
-      title: "Countries and Capitals",
+      title: "Countries in the world",
       description: "Discover countries around the world and their capitals",
       duration: "25 min",
       icon: BookOpen,
