@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ArrowLeft, Play, BookOpen, CheckCircle, Lock, Clock, X } from "lucide-react";
+import { ArrowLeft, Play, BookOpen, CheckCircle, Lock, Clock, X, MapPin, Globe2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
@@ -151,6 +151,42 @@ const Lessons = () => {
       icon: BookOpen,
       locked: false,
       preview: naturalWonders
+    },
+    {
+      id: "asia",
+      title: "Asia",
+      description: "Discover the largest continent with diverse cultures and landscapes",
+      duration: "22 min",
+      icon: Globe2,
+      locked: false,
+      preview: continentsOceans
+    },
+    {
+      id: "america",
+      title: "America",
+      description: "Explore North and South America from pole to pole",
+      duration: "24 min",
+      icon: MapPin,
+      locked: false,
+      preview: continentsOceans
+    },
+    {
+      id: "europe",
+      title: "Europe",
+      description: "Journey through Europe's rich history and geography",
+      duration: "20 min",
+      icon: Globe2,
+      locked: false,
+      preview: continentsOceans
+    },
+    {
+      id: "africa",
+      title: "Africa",
+      description: "Experience Africa's diverse wildlife and natural beauty",
+      duration: "23 min",
+      icon: MapPin,
+      locked: false,
+      preview: continentsOceans
     }
   ];
 
