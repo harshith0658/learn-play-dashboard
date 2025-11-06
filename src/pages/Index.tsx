@@ -290,38 +290,6 @@ const Index = () => {
         </div>
       </main>
 
-      {/* Bottom Navigation */}
-      <nav className="bg-gradient-to-t from-[hsl(140,50,35)] to-[hsl(140,55,40)] px-8 py-6">
-        <div className="max-w-2xl mx-auto flex justify-around items-center">
-          <button className="flex flex-col items-center gap-2 group">
-            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
-              <Sprout className="w-8 h-8 text-primary group-hover:rotate-12 transition-transform duration-300" />
-            </div>
-            <span className="text-sm font-semibold text-card group-hover:scale-105 transition-transform duration-300">Home</span>
-          </button>
-          
-          <button className="flex flex-col items-center gap-2 group">
-            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
-              <SettingsIcon className="w-8 h-8 text-primary group-hover:rotate-90 transition-transform duration-300" />
-            </div>
-            <span className="text-sm font-semibold text-card group-hover:scale-105 transition-transform duration-300">Achievements</span>
-          </button>
-          
-          <button className="flex flex-col items-center gap-2 group">
-            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
-              <Store className="w-8 h-8 text-primary group-hover:rotate-12 transition-transform duration-300" />
-            </div>
-            <span className="text-sm font-semibold text-card group-hover:scale-105 transition-transform duration-300">Store</span>
-          </button>
-          
-          <button className="flex flex-col items-center gap-2 group">
-            <div className="w-16 h-16 rounded-full bg-card shadow-lg flex items-center justify-center group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
-              <LogOut className="w-8 h-8 text-primary group-hover:rotate-12 transition-transform duration-300" />
-            </div>
-            <span className="text-sm font-semibold text-card group-hover:scale-105 transition-transform duration-300">Logout</span>
-          </button>
-        </div>
-      </nav>
     </div>
   );
 };
