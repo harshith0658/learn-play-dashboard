@@ -159,7 +159,8 @@ const Lessons = () => {
       duration: "24 min",
       icon: MapPin,
       locked: false,
-      preview: continentsOceans
+      preview: continentsOceans,
+      videoUrl: "/videos/america.mp4"
     },
     {
       id: "europe",
