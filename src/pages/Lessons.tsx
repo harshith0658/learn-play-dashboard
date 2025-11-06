@@ -169,7 +169,8 @@ const Lessons = () => {
       duration: "20 min",
       icon: Globe2,
       locked: false,
-      preview: continentsOceans
+      preview: continentsOceans,
+      videoUrl: "/videos/europe.mp4"
     },
     {
       id: "africa",
