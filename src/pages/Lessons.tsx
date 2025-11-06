@@ -150,7 +150,8 @@ const Lessons = () => {
       duration: "22 min",
       icon: Globe2,
       locked: false,
-      preview: continentsOceans
+      preview: continentsOceans,
+      videoUrl: "/videos/asia.mp4"
     },
     {
       id: "america",
