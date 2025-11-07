@@ -124,14 +124,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      complete_quiz: {
-        Args: { p_quiz_id: string }
-        Returns: Json
-      }
-      complete_video: {
-        Args: { p_video_id: string }
-        Returns: Json
-      }
+      complete_quiz:
+        | { Args: { p_quiz_id: string }; Returns: Json }
+        | { Args: { p_quiz_id: string; p_score?: number }; Returns: Json }
+      complete_video: { Args: { p_video_id: string }; Returns: Json }
       unlock_game: {
         Args: { p_coin_cost: number; p_game_id: string }
         Returns: Json

@@ -182,7 +182,8 @@ const Quiz = () => {
     try {
       const quizId = lessonId || "general-quiz";
       const { data, error } = await supabase.rpc('complete_quiz', {
-        p_quiz_id: quizId
+        p_quiz_id: quizId,
+        p_score: score
       });
 
       if (error) {
@@ -194,7 +195,7 @@ const Quiz = () => {
         return;
       }
 
-      const result = data as { success: boolean; message: string; total_coins?: number; total_xp?: number; total_badges?: number };
+      const result = data as { success: boolean; message: string; coins_earned?: number; xp_earned?: number; total_coins?: number; total_xp?: number; total_badges?: number };
 
       if (result.success) {
         toast({
@@ -380,11 +381,11 @@ const Quiz = () => {
               <div className="space-y-3">
                 <div className="flex items-center justify-center gap-3 bg-gradient-to-r from-yellow-100 to-amber-100 px-6 py-5 rounded-2xl border-3 border-yellow-400 shadow-lg transform hover:scale-105 transition-all">
                   <Coins className="w-8 h-8 text-yellow-600" />
-                  <span className="text-2xl font-bold text-yellow-700">+100 Coins</span>
+                  <span className="text-2xl font-bold text-yellow-700">+{score * 20} Coins</span>
                 </div>
                 <div className="flex items-center justify-center gap-3 bg-gradient-to-r from-purple-100 to-blue-100 px-6 py-5 rounded-2xl border-3 border-purple-400 shadow-lg transform hover:scale-105 transition-all">
                   <Star className="w-8 h-8 text-purple-600" />
-                  <span className="text-2xl font-bold text-purple-700">+100 XP</span>
+                  <span className="text-2xl font-bold text-purple-700">+{score * 20} XP</span>
                 </div>
                 <div className="flex items-center justify-center gap-3 bg-gradient-to-r from-green-100 to-emerald-100 px-6 py-5 rounded-2xl border-3 border-green-400 shadow-lg transform hover:scale-105 transition-all">
                   <Award className="w-8 h-8 text-green-600" />
