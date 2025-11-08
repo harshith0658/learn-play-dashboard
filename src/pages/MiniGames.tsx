@@ -223,11 +223,30 @@ const MiniGames = () => {
                 >
                   {/* Lock Overlay */}
                   {isLocked && (
-                    <div className="absolute inset-0 bg-gray-950/80 backdrop-blur-sm z-10 flex items-center justify-center">
-                      <div className="text-center">
-                        <Lock className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                        <p className="text-gray-300 text-lg font-semibold mb-2">Locked</p>
+                    <div className="absolute inset-0 bg-gray-950/80 backdrop-blur-sm z-10 flex items-center justify-center pointer-events-none">
+                      <div className="text-center space-y-4 pointer-events-auto">
+                        <Lock className="w-16 h-16 text-gray-400 mx-auto" />
+                        <p className="text-gray-300 text-lg font-semibold">Locked</p>
                         <p className="text-gray-400 text-sm">Cost: {UNLOCK_COST} coins</p>
+                        <Button 
+                          onClick={() => handleUnlockGame(game.id)}
+                          disabled={isUnlocking || userCoins < UNLOCK_COST}
+                          className="bg-gradient-to-r from-yellow-600 to-amber-600 hover:from-yellow-700 hover:to-amber-700 text-white px-6 py-4 text-base font-semibold rounded-2xl shadow-lg hover:shadow-yellow-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {isUnlocking ? (
+                            "Unlocking..."
+                          ) : userCoins < UNLOCK_COST ? (
+                            <>
+                              <Lock className="w-5 h-5 mr-2" />
+                              Not Enough Coins
+                            </>
+                          ) : (
+                            <>
+                              <Coins className="w-5 h-5 mr-2" />
+                              Unlock ({UNLOCK_COST} coins)
+                            </>
+                          )}
+                        </Button>
                       </div>
                     </div>
                   )}
