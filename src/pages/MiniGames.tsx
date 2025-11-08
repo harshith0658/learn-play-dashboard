@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Trash2, Droplets, TreePine, Gamepad2, Lock, Coins, Star, Award, Brain } from "lucide-react";
+import { ArrowLeft, Trash2, Droplets, TreePine, Gamepad2, Lock, Coins, Star, Award, Brain, Flag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
@@ -111,6 +111,15 @@ const MiniGames = () => {
   };
 
   const games = [
+    {
+      id: "flag-quiz",
+      title: "Flag Quiz",
+      description: "Guess countries by their flags",
+      icon: Flag,
+      bgColor: "from-pink-600/20 to-purple-600/20",
+      glowColor: "group-hover:shadow-[0_0_30px_rgba(236,72,153,0.6)]",
+      path: "/flag-quiz"
+    },
     {
       id: "trash-sorter",
       title: "Trash Sorter",
