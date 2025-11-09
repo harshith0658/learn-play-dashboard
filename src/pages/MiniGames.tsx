@@ -121,6 +121,15 @@ const MiniGames = () => {
       path: "/flag-quiz"
     },
     {
+      id: "continent-match",
+      title: "Match Continents",
+      description: "Drag and match continent names",
+      icon: Brain,
+      bgColor: "from-indigo-600/20 to-violet-600/20",
+      glowColor: "group-hover:shadow-[0_0_30px_rgba(99,102,241,0.6)]",
+      path: "/continent-match"
+    },
+    {
       id: "trash-sorter",
       title: "Trash Sorter",
       description: "Sort trash into bins by dragging",
