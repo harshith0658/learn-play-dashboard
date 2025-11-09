@@ -11,6 +11,7 @@ import MiniGames from "./pages/MiniGames";
 import MemoryRecap from "./pages/MemoryRecap";
 import FlagQuiz from "./pages/FlagQuiz";
 import ContinentMatch from "./pages/ContinentMatch";
+import LetterMatch from "./pages/LetterMatch";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/memory-recap" element={<MemoryRecap />} />
           <Route path="/flag-quiz" element={<FlagQuiz />} />
           <Route path="/continent-match" element={<ContinentMatch />} />
+          <Route path="/letter-match" element={<LetterMatch />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -130,6 +130,15 @@ const MiniGames = () => {
       path: "/continent-match"
     },
     {
+      id: "letter-match",
+      title: "Letter Match",
+      description: "Match big and small letters",
+      icon: Star,
+      bgColor: "from-yellow-600/20 to-pink-600/20",
+      glowColor: "group-hover:shadow-[0_0_30px_rgba(250,204,21,0.6)]",
+      path: "/letter-match"
+    },
+    {
       id: "trash-sorter",
       title: "Trash Sorter",
       description: "Sort trash into bins by dragging",
