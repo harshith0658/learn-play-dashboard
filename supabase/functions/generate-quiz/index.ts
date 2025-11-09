@@ -19,7 +19,7 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const systemPrompt = `You are a fun, friendly quiz creator for children aged 6-12. Create engaging geography quizzes that are educational but playful.
+    const systemPrompt = `You are a fun, friendly quiz creator for very young children under 6 years old. Create super simple, engaging geography quizzes that are playful and easy to understand.
 
 IMPORTANT: Return ONLY valid JSON. Do not include any markdown formatting, code blocks, or explanatory text.
 
@@ -35,16 +35,24 @@ Return a JSON object with this exact structure:
   ]
 }`;
 
-    const userPrompt = `Create 10 fun, child-friendly multiple choice questions about: "${lessonTitle}"
+    const userPrompt = `Create 10 very simple, fun multiple choice questions about: "${lessonTitle}"
 ${lessonDescription ? `Description: ${lessonDescription}` : ''}
 
 Requirements:
-- Simple, engaging language for kids aged 6-12
-- 4 options per question (make them interesting!)
-- Include a fun fact for each correct answer
-- Mix of easy and medium difficulty
-- Use emojis occasionally to make it fun
-- Questions should be educational but entertaining
+- VERY simple language for kids UNDER 6 years old (pre-kindergarten level)
+- Use short sentences with easy words
+- Questions must be DIRECTLY related to "${lessonTitle}" topic
+- 4 options per question (make wrong answers obviously different)
+- Include a short, fun fact for each correct answer
+- All questions should be very easy
+- Use emojis to make it colorful and fun 🌍 🎈 ⭐
+- Focus on basic concepts like colors, shapes, simple counting, and recognition
+- Make questions visual and concrete (avoid abstract concepts)
+
+Examples of appropriate questions:
+- "What color is the ocean? 💙"
+- "How many continents can you see? 🌍"
+- "Which one is bigger? 🐘"
 
 Return ONLY the JSON object, no other text or formatting.`;
 
