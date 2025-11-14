@@ -9,6 +9,7 @@ import {
   Gamepad2,
   Sprout,
   TreeDeciduous,
+  Sparkles,
   Settings as SettingsIcon,
   Store,
   LogOut,
@@ -278,6 +279,25 @@ const Index = () => {
               </div>
               <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
                 <Gamepad2 className="w-8 h-8" />
+              </div>
+            </button>
+
+            {/* Learn Topic Button */}
+            <button 
+              onClick={() => navigate("/learn-topic")}
+              className="w-full bg-gradient-to-r from-pink-500 to-orange-500 hover:from-pink-600 hover:to-orange-600 text-white rounded-[3rem] px-8 py-8 shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-3xl flex items-center justify-between relative overflow-hidden animate-slide-up [animation-delay:300ms] group"
+            >
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center group-hover:animate-bounce-subtle">
+                  <Sparkles className="w-8 h-8" />
+                </div>
+                <div className="text-left">
+                  <h2 className="text-3xl font-bold tracking-wide transition-transform duration-300 group-hover:scale-105">Learn Anything</h2>
+                  <p className="text-lg opacity-90 transition-all duration-300 group-hover:translate-x-2">- Ask & Discover</p>
+                </div>
+              </div>
+              <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+                <Sparkles className="w-8 h-8" />
               </div>
             </button>
           </div>
