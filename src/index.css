@@ -56,41 +56,50 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 160 30% 15%;
-    --foreground: 190 40% 90%;
+    /* Cozy deep navy-purple background - easy on eyes */
+    --background: 250 30% 12%;
+    --foreground: 45 30% 92%;
 
-    --card: 160 25% 20%;
-    --card-foreground: 190 40% 90%;
+    /* Soft purple-gray cards */
+    --card: 255 25% 18%;
+    --card-foreground: 45 30% 92%;
 
-    --popover: 160 25% 20%;
-    --popover-foreground: 190 40% 90%;
+    --popover: 255 25% 18%;
+    --popover-foreground: 45 30% 92%;
 
-    --primary: 145 60% 50%;
-    --primary-foreground: 0 0% 100%;
+    /* Playful mint-teal primary */
+    --primary: 170 65% 50%;
+    --primary-foreground: 250 30% 10%;
 
-    --secondary: 210 100% 55%;
+    /* Soft coral-pink secondary */
+    --secondary: 350 70% 65%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 160 20% 25%;
-    --muted-foreground: 190 20% 65%;
+    /* Muted purple-gray tones */
+    --muted: 255 20% 22%;
+    --muted-foreground: 250 15% 65%;
 
-    --accent: 35 100% 55%;
-    --accent-foreground: 0 0% 100%;
+    /* Warm golden accent */
+    --accent: 45 90% 60%;
+    --accent-foreground: 250 30% 10%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 160 20% 25%;
-    --input: 160 20% 25%;
-    --ring: 145 60% 50%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Soft borders */
+    --border: 255 20% 25%;
+    --input: 255 20% 25%;
+    --ring: 170 65% 50%;
+
+    /* Sidebar with matching cozy theme */
+    --sidebar-background: 250 28% 14%;
+    --sidebar-foreground: 45 30% 92%;
+    --sidebar-primary: 170 65% 50%;
+    --sidebar-primary-foreground: 250 30% 10%;
+    --sidebar-accent: 255 25% 20%;
+    --sidebar-accent-foreground: 45 30% 92%;
+    --sidebar-border: 255 20% 22%;
+    --sidebar-ring: 170 65% 50%;
   }
 }
 
