@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Globe, Mail, Lock, User, Sparkles, Star } from "lucide-react";
+import astronautCharacter from "@/assets/astronaut-character.png";
+import alienCharacter from "@/assets/alien-character.png";
+import rocketCharacter from "@/assets/rocket-character.png";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -121,6 +123,33 @@ const Auth = () => {
           <div className="w-80 h-12 border-2 border-white/20 rounded-full rotate-[-20deg] transform" />
         </div>
 
+        {/* Astronaut character - floating animation */}
+        <div className="absolute top-32 right-16 animate-float z-20" style={{ animationDelay: '0.5s' }}>
+          <img 
+            src={astronautCharacter} 
+            alt="Cute astronaut" 
+            className="w-28 h-28 object-contain drop-shadow-2xl hover:scale-110 transition-transform duration-300 cursor-pointer"
+          />
+        </div>
+
+        {/* Alien character - waving */}
+        <div className="absolute bottom-32 left-16 animate-float z-20" style={{ animationDelay: '1.5s' }}>
+          <img 
+            src={alienCharacter} 
+            alt="Friendly alien" 
+            className="w-24 h-24 object-contain drop-shadow-2xl hover:scale-110 transition-transform duration-300 cursor-pointer"
+          />
+        </div>
+
+        {/* Rocket character - flying upward */}
+        <div className="absolute top-1/3 left-1/2 animate-float z-20" style={{ animationDelay: '2.5s' }}>
+          <img 
+            src={rocketCharacter} 
+            alt="Happy rocket" 
+            className="w-20 h-20 object-contain drop-shadow-2xl hover:scale-110 transition-transform duration-300 cursor-pointer rotate-[-15deg]"
+          />
+        </div>
+
         {/* Adventure text */}
         <div className="absolute bottom-20 left-12 text-left z-10">
           <h2 className="text-4xl font-bold text-white mb-2">
@@ -146,10 +175,26 @@ const Auth = () => {
       </div>
 
       {/* Right side - Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 relative">
+        {/* Mobile character decorations */}
+        <div className="lg:hidden absolute top-4 left-4 animate-float z-10">
+          <img 
+            src={astronautCharacter} 
+            alt="Cute astronaut" 
+            className="w-16 h-16 object-contain drop-shadow-xl"
+          />
+        </div>
+        <div className="lg:hidden absolute top-4 right-4 animate-float z-10" style={{ animationDelay: '1s' }}>
+          <img 
+            src={rocketCharacter} 
+            alt="Happy rocket" 
+            className="w-14 h-14 object-contain drop-shadow-xl rotate-12"
+          />
+        </div>
+
         <div className="w-full max-w-md">
           {/* Mobile logo */}
-          <div className="lg:hidden flex items-center justify-center gap-3 mb-8">
+          <div className="lg:hidden flex items-center justify-center gap-3 mb-8 mt-16">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#a855f7] to-[#7c3aed] flex items-center justify-center shadow-lg shadow-purple-500/30">
               <Globe className="w-7 h-7 text-white" />
             </div>
@@ -259,7 +304,14 @@ const Auth = () => {
           </div>
 
           {/* Decorative elements for mobile */}
-          <div className="lg:hidden mt-8 text-center">
+          <div className="lg:hidden mt-8 text-center relative">
+            <div className="absolute -left-4 top-0 animate-float" style={{ animationDelay: '2s' }}>
+              <img 
+                src={alienCharacter} 
+                alt="Friendly alien" 
+                className="w-12 h-12 object-contain drop-shadow-xl"
+              />
+            </div>
             <p className="text-2xl font-bold text-white/80">Start Your</p>
             <p className="text-3xl font-extrabold bg-gradient-to-r from-[#a855f7] via-[#ec4899] to-[#f472b6] bg-clip-text text-transparent">
               ADVENTURE!
